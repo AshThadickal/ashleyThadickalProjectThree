@@ -37,14 +37,7 @@ function App() {
   }
 
   const handleLike = (event) => {
-    event.preventDefault()
-    const likedArray = [];
-    likedArray.push(event.target.value)
-    setLiked(likedArray)
-    console.log(liked)
-    // if(liked.includes(event.target.value)) {
-
-    // }
+    event.currentTarget.classList.toggle('haha')
   }
 
   return (
