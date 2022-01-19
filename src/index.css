@@ -6,6 +6,10 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 
 html {
   font-size: 125%;
+  }
+
+body {
+  background-color: #000;
 }
 
 .wrapper {
@@ -15,7 +19,14 @@ html {
 }
 
 h1 {
-  font-size: 1.5rem;
+  font-size: 2rem;
+  padding-top: 35vh;
+  text-align: left;
+  color: white;
+}
+
+h1 span {
+  display: block;
 }
 
 h2 {
@@ -24,7 +35,24 @@ h2 {
 
 button {
   font-size: 0.9rem;
-  padding: 5px;
+  background-color: #242424 ;
+  color: #d1cde4;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+header {
+  background-image: url(./19849.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 50vh;
 }
 
 .resultsContainer {
@@ -34,13 +62,45 @@ button {
 }
 
 .results {
-  width: calc((100% / 2) - 15px);
+  width: calc((100% / 2) - 20px);
+  background-color: #d1cde4;
+  margin: 10px;
+  padding: 8px;
 }
 
 .results img {
   max-width: 100%;
 }
 
+.searchAgain {
+  background: #d1cde4;
+  display: block;
+  margin-right: 10px;
+  margin-left: auto;
+}
+
+form {
+  height: 150px;
+  width: 50%;
+  margin: -30px auto 40px auto;
+  background-color: #d1cde4;
+;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  
+}
 
 
 
+
+/* Moons Photo Credit: Photo by <a href="https://unsplash.com/@codefriend_de?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lars Kuczynski</a> on <a href="https://unsplash.com/images/nature/outer-space?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
+Galaxy Photo Credit: Photo by <a href="https://unsplash.com/@jeremythomasphoto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jeremy Thomas</a> on <a href="https://unsplash.com/images/nature/outer-space?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
+Moon Photo Credit: 
+Photo by Chuck Johnson from Pexels
+
+  */ 

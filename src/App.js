@@ -3,6 +3,7 @@ import axios from 'axios';
 import DisplayResults from './DisplayResults.js';
 import InputForm from './InputForm.js';
 import Popup from './Popup.js';
+import SearchAgainButton from './SearchAgainButton'
 import './App.css';
 
 
@@ -11,6 +12,7 @@ function App() {
   const [userInput, setUserInput] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [popup, setPopup] = useState(false);
+  const [searchAgain, setSearchAgain] = useState(false);
   
   const handleInput = (event) => {
     setUserInput(event.target.value)
@@ -26,7 +28,7 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setSearchTerm(userInput);
-    setUserInput('')
+    setUserInput(''); 
   }
 
   useEffect (() => {
@@ -53,7 +55,7 @@ function App() {
       }
         
         shorterResponse.length === 0 ? setPopup(true) : createLikes(shorterResponse);;
-        // setNasaItem(responseWithLikes);
+        
     })
     }
   }, [searchTerm])
@@ -69,14 +71,12 @@ function App() {
       <InputForm 
         handleSubmit={handleSubmit}
         handleInput={handleInput}
+        userInput={userInput}
+        setSearchAgain={setSearchAgain}
       />
 
-      {/* <form onSubmit={handleSubmit}>
-        <label htmlFor="search">Search for Space:</label>
-        <input type="text" id="search" onChange={handleInput} value={userInput} />
-        <button>Search</button>
-      </form> */}
-<div className='resultsContainer'>
+
+    <div className='resultsContainer'>
       {
         nasaItem.map((nasaObject) => {
           return(
@@ -94,8 +94,14 @@ function App() {
           )
         })
       }
-</div>
-      <button><a href="#home">Click to Search Again</a></button>
+    </div>
+
+      <SearchAgainButton 
+        searchAgain={searchAgain}
+        setSearchAgain={setSearchAgain}
+        
+        />
+      {/* <button className='searchAgain'><a href="#home">Click to Search Again</a></button> */}
 
       <Popup
         trigger={popup}
