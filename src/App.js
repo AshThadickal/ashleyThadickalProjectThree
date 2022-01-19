@@ -4,6 +4,7 @@ import DisplayResults from './DisplayResults.js';
 import InputForm from './InputForm.js';
 import Popup from './Popup.js';
 import SearchAgainButton from './SearchAgainButton'
+
 import './App.css';
 
 
@@ -42,7 +43,7 @@ function App() {
         media_type: 'image'
       },
     }).then((response) => {
-      const shorterResponse = (response.data.collection.items).slice(0, 8)
+      const shorterResponse = (response.data.collection.items).slice(0, 9)
       
       
       const createLikes = (nasaItem) => {
