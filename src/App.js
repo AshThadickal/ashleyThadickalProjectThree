@@ -5,8 +5,7 @@ import InputForm from './InputForm.js';
 import Popup from './Popup.js';
 import SearchAgainButton from './SearchAgainButton'
 
-import './App.css';
-
+// import './App.css';
 
 function App() {
   const [nasaItem, setNasaItem] = useState([]);
@@ -44,8 +43,7 @@ function App() {
       },
     }).then((response) => {
       const shorterResponse = (response.data.collection.items).slice(0, 9)
-      
-      
+            
       const createLikes = (nasaItem) => {
         const responseWithLikes = [...nasaItem];
         responseWithLikes.forEach(item => {
@@ -54,20 +52,18 @@ function App() {
         
         setNasaItem(responseWithLikes)
       }
-        
-        shorterResponse.length === 0 ? setPopup(true) : createLikes(shorterResponse);;
-        
+        shorterResponse.length === 0 ? setPopup(true) : createLikes(shorterResponse);
     })
     }
   }, [searchTerm])
 
-  
-
-
   return (
-    <div className="App">
+    <div className='mainContainer'>
       <header>
-        <h1 className='wrapper' id='home'>A look at Space: <span>Images from NASA</span></h1>
+        <div className='wrapper headerContainer'>
+          <h1 id='home'>A look at Space: <span>Images from NASA</span></h1>
+          <p>We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win.</p>
+        </div>
       </header>
       <InputForm 
         handleSubmit={handleSubmit}
@@ -76,12 +72,10 @@ function App() {
         setSearchAgain={setSearchAgain}
       />
 
-
-    <div className='resultsContainer'>
+    <section className='wrapper resultsContainer'>
       {
         nasaItem.map((nasaObject) => {
           return(
-            
               <DisplayResults 
                 key={nasaObject.data[0].nasa_id}
                 id={nasaObject.data[0].nasa_id}
@@ -91,18 +85,19 @@ function App() {
                 activeLike={nasaObject.likes}
                 handleLike={handleLike}
                 />
-            
-          )
+              )
         })
       }
-    </div>
 
       <SearchAgainButton 
         searchAgain={searchAgain}
         setSearchAgain={setSearchAgain}
-        
         />
-      {/* <button className='searchAgain'><a href="#home">Click to Search Again</a></button> */}
+    </section>
+
+    <footer>
+      <p>Created at <a href='htts://www.junocollege.com'>Juno College</a> by Ashley Thadickal</p>
+    </footer>
 
       <Popup
         trigger={popup}
