@@ -18,18 +18,20 @@ function App() {
     setUserInput(event.target.value);
   };
   
-  const handleLike = (id) => {
-    const newNasaItem = [...nasaItem];
-    const index = newNasaItem.findIndex(item => item.data[0].nasa_id === id);
-    newNasaItem[index].likes = !newNasaItem[index].likes;
-    setNasaItem(newNasaItem);
-    console.log('nasaItem', nasaItem);
-  }
-
   const handleSubmit = (event) => {
     event.preventDefault();
     setSearchTerm(userInput);
     setUserInput(''); 
+  }
+
+  // Function to be able to like and unlike a photo
+  const handleLike = (id) => {
+    const newNasaItem = [...nasaItem];
+    // finding the index of the array item based of the id returned from the API
+    const index = newNasaItem.findIndex(item => item.data[0].nasa_id === id);
+    // switching the likes property between true and false
+    newNasaItem[index].likes = !newNasaItem[index].likes;
+    setNasaItem(newNasaItem);
   }
   // End of Handle Functions
 
@@ -45,6 +47,7 @@ function App() {
       },
     }).then((response) => {
       const shorterResponse = (response.data.collection.items).slice(0, 9)
+      // Adding a 'likes' property to the returned object with a value of false
       const createLikes = (nasaItem) => {
         const responseWithLikes = [...nasaItem];
         responseWithLikes.forEach(item => {
@@ -52,8 +55,11 @@ function App() {
         });
       setNasaItem(responseWithLikes)
       }
+      // Error handling for if the response is an empty array (this was done before we learned about this in class and I didn't have an opportunity to get it working in the way we learned)
       shorterResponse.length === 0 ? setPopup(true) : createLikes(shorterResponse);
-    }).catch(err => (console.log(err)));
+    }).catch((err) => {
+      alert('There was an unexpected error in processing your request')
+    })
     }
   }, [searchTerm]);
   // End of getting data from API and storing in the nasaItem
