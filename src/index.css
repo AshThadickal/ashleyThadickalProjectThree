@@ -219,10 +219,18 @@ footer a {
     height: 40vh;
   }
   .headerContainer {
-    padding-top: 120px;
+    padding-top: 10px;
   }
   header p {
     display: none;
+  }
+
+  form {
+    margin-top: 50px;
+  }
+
+  input[type='text'] {
+    width: 60%;
   }
 }
 
