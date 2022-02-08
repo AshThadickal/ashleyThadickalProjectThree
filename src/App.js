@@ -49,7 +49,7 @@ function App() {
           title: spreadItem.data[0].title,
         };
         spreadLikedItems.push(newLikedImage)
-        console.log(spreadLikedItems)
+        setListOfLikes(spreadLikedItems)
       }
     })
   }
