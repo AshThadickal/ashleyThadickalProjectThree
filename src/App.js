@@ -13,6 +13,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [popup, setPopup] = useState(false);
   const [searchAgain, setSearchAgain] = useState(false);
+  const [listOfLikes, setListOfLikes] = useState([]);
   
   const handleInput = (event) => {
     setUserInput(event.target.value);
@@ -32,7 +33,29 @@ function App() {
     // switching the likes property between true and false
     newNasaItem[index].likes = !newNasaItem[index].likes;
     setNasaItem(newNasaItem);
+    console.log(nasaItem);
+    likedNasaItems();
   }
+
+  const likedNasaItems = () => {
+    const spreadNasaItem = [...nasaItem];
+    const spreadLikedItems = [...listOfLikes]
+    spreadNasaItem.forEach(spreadItem => {
+      if(spreadItem.likes) {
+        const newLikedImage = 
+        {
+          id: spreadItem.data[0].nasa_id,
+          image: spreadItem.links[0].href,
+          title: spreadItem.data[0].title,
+        };
+        spreadLikedItems.push(newLikedImage)
+        console.log(spreadLikedItems)
+      }
+    })
+  }
+
+
+
   // End of Handle Functions
 
   useEffect (() => {
@@ -46,6 +69,7 @@ function App() {
         media_type: 'image'
       },
     }).then((response) => {
+      console.log(response)
       const shorterResponse = (response.data.collection.items).slice(0, 9)
       // Adding a 'likes' property to the returned object with a value of false
       const createLikes = (nasaItem) => {
@@ -64,6 +88,7 @@ function App() {
   }, [searchTerm]);
   // End of getting data from API and storing in the nasaItem
   
+  console.log(nasaItem)
 
   return (
     <div className='mainContainer'>
